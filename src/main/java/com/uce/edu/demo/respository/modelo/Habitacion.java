@@ -27,10 +27,16 @@ public class Habitacion {
 	@Column(name = "habi_tipo")
 	private String tipo;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="habi_id_hotel")
 	private Hotel hotel;
 	
+	
+	@Override
+	public String toString() {
+		return "Habitacion [id=" + id + ", numero=" + numero + ", piso=" + piso + ", tipo=" + tipo + "]";
+	}
 	//set y get
 	public Integer getId() {
 		return id;

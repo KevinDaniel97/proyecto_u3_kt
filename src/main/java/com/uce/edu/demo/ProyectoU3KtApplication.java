@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.respository.modelo.Habitacion;
 import com.uce.edu.demo.respository.modelo.Hotel;
 import com.uce.edu.demo.service.IHotelService;
 
@@ -29,29 +30,30 @@ public class ProyectoU3KtApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		List <Hotel> listaHoteles=this.iHotelService.buscarHotelInnerJoin("Familiar");
-		for(Hotel h : listaHoteles) {
-			log.info("Hotel INNER: "+h.getNombre()+" "+h.getDireccion());
+		log.info("RelacionamieNto Where");
+		List <Hotel> listaHotelWhere=this.iHotelService.buscarHotelJoinWhere("Familia");
+		for(Hotel h : listaHotelWhere) {
+			log.info("Hotel Where: "+h.getNombre()+" "+h.getDireccion());
 		}
 		
-		List <Hotel> listaHotelesRight=this.iHotelService.buscarHotelOuterhJoinRight("Familiar");
-		for(Hotel h : listaHotelesRight) {
-			log.info("Hotel RIGHT: "+h.getNombre()+" "+h.getDireccion());
-		}
-		List <Hotel> listaHotelesLeft=this.iHotelService.buscarHotelOuterJoinLeft("Familiar");
-		for(Hotel h : listaHotelesLeft) {
-			log.info("Hotel LEFT: "+h.getNombre()+" "+h.getDireccion());
-		}
-		
-		List <Hotel> listaHotelesLeft2=this.iHotelService.buscarHotelOuterJoinLeft();
-		for(Hotel h : listaHotelesLeft2) {
-			log.info("Hotel LEFT2: "+h.getNombre()+" "+h.getDireccion());
-		}
-		List <Hotel> listaHoteles2=this.iHotelService.buscarHotelInnerJoin();
+		log.info("Inner JOIN EAGER/LAZY");
+		List <Hotel> listaHoteles2=this.iHotelService.buscarHotelInnerJoin("Familia");
 		for(Hotel h : listaHoteles2) {
-			log.info("Hotel INNER 2: "+h.getNombre()+" "+h.getDireccion());
+			log.info("Hotel2 : "+h.getNombre()+" "+h.getDireccion());
+			for(Habitacion ha: h.getHabitaciones()) {
+				log.info("Habitacion2: "+ha);	
+				
+			}
 		}
-		
+		log.info(" JOIN FECHT");
+		List <Hotel> listaHoteles3=this.iHotelService.buscarHotelJoinFintech("Familia");
+		for(Hotel h : listaHoteles3) {
+			log.info("Hotel3 : "+h.getNombre()+" "+h.getDireccion());
+			for(Habitacion ha: h.getHabitaciones()) {
+				log.info("Habitacion3: "+ha);	
+				
+			}
+		}
 		
 	}
 
