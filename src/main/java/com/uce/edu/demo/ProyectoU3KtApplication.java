@@ -8,8 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.cajero.modelo.DetalleFactura;
-import com.uce.edu.demo.cajero.modelo.Factura;
+import com.uce.edu.demo.cajero.repository.modelo.DetalleFactura;
+import com.uce.edu.demo.cajero.repository.modelo.Factura;
 import com.uce.edu.demo.cajero.service.IFacturaService;
 
 @SpringBootApplication

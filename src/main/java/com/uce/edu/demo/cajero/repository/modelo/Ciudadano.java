@@ -1,4 +1,4 @@
-package com.uce.edu.demo.cajero.modelo;
+package com.uce.edu.demo.cajero.repository.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

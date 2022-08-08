@@ -1,4 +1,4 @@
-package com.uce.edu.demo.cajero.respository;
+package com.uce.edu.demo.cajero.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.cajero.modelo.Factura;
+import com.uce.edu.demo.cajero.repository.modelo.Factura;
 
 @Repository
 @Transactional

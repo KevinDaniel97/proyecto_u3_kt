@@ -1,4 +1,4 @@
-package com.uce.edu.demo.cajero.modelo;
+package com.uce.edu.demo.cajero.repository.modelo;
 
 import java.math.BigDecimal;
 import java.util.List;

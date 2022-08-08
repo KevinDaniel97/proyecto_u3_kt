@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.edu.demo.cajero.modelo.Factura;
-import com.uce.edu.demo.cajero.respository.IFacturaRespository;
+import com.uce.edu.demo.cajero.repository.IFacturaRespository;
+import com.uce.edu.demo.cajero.repository.modelo.Factura;
 @Service
 public class FacturaServiceImpl implements IFacturaService {
 
