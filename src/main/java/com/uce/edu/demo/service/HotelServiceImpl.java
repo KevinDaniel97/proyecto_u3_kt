@@ -52,7 +52,7 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public List<Hotel> buscarHotelJoinFintech(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return this.iHotelRepository.buscarHotelJoinFetech(tipoHabitacion);
+		return this.iHotelRepository.buscarHotelJoinFetch(tipoHabitacion);
 	}
 
 	

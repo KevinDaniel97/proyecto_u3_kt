@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.cajero.modelo.DetalleFactura;
 import com.uce.edu.demo.cajero.modelo.Factura;
 import com.uce.edu.demo.cajero.service.IFacturaService;
 
@@ -25,30 +26,20 @@ public class ProyectoU3KtApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		// Inner
-		List<Factura> listaFacturas = this.iFacturaService.buscarFacturaInnerJoin(2);
-		for (Factura f : listaFacturas) {
-			log.info("		Factura INNER: " + f.getNumero() + " " + f.getFecha());
+		
+		log.info(">>>Relacionamiento WHERE");
+		List <Factura> listaFacturaWhere=this.iFacturaService.buscarFacturaJoinWhere(10);
+		for(Factura f : listaFacturaWhere) {
+			log.info("		Factura Where: "+f.getNumero()+" "+f.getFecha());
 		}
-		List<Factura> listaFactura2 = this.iFacturaService.buscarFacturaInnerJoin();
-		for (Factura f : listaFactura2) {
-			log.info("		Factura INNER 2: " + f.getNumero() + " " + f.getFecha());
-		}
-		// right
-		List<Factura> listaFacturasRight = this.iFacturaService.buscarFacturaOuterJoinRight(2);
-		for (Factura f : listaFacturasRight) {
-			log.info("		Factura RIGHT: " + f.getNumero() + " " + f.getFecha());
-		}
-		// Left
-		List<Factura> listaFacturasLeft = this.iFacturaService.buscarFacturaOuterJoinLeft(2);
-		for (Factura f : listaFacturasLeft) {
-			log.info("		Factura LEFT: " + f.getNumero() + " " + f.getFecha());
-		}
-
-		List<Factura> listaFacturasLeft2 = this.iFacturaService.buscarFacturaOuterJoinLeft();
-		for (Factura f : listaFacturasLeft2) {
-			log.info("		Factura LEFT2: " + f.getNumero() + " " + f.getFecha());
+		
+		log.info(">>>JOIN FECHT");
+		List <Factura> listaFacturas3=this.iFacturaService.buscarFacturaJoinFetch(10);
+		for(Factura f : listaFacturas3) {
+			log.info("		Factura3 : "+f.getNumero()+" "+f.getFecha());
+			for(DetalleFactura de: f.getDetalles()) {
+				log.info("		DetallerFacura3: "+de);		
+			}
 		}
 
 	}

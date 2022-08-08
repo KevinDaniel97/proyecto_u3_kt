@@ -62,7 +62,7 @@ public class HotelRepositoryImpl implements IHotelRepository{
 		return myQuery.getResultList();
 	}
 	@Override
-	public List<Hotel> buscarHotelJoinFetech(String tipoHabitacion) {
+	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		TypedQuery<Hotel> myQuery=this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo =:tipoHabitacion ",Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
