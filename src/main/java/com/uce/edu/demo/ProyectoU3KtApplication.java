@@ -1,6 +1,6 @@
 package com.uce.edu.demo;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +8,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.cajero.repository.modelo.DetalleFactura;
-import com.uce.edu.demo.cajero.repository.modelo.Factura;
-import com.uce.edu.demo.cajero.service.IFacturaService;
+import com.uce.edu.demo.service.ITransfernciaService;
 
 @SpringBootApplication
 public class ProyectoU3KtApplication implements CommandLineRunner {
 
 	private static Logger log = Logger.getLogger(ProyectoU3KtApplication.class);
 
+	
 	@Autowired
-	private IFacturaService iFacturaService;
+	private ITransfernciaService iTransfernciaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3KtApplication.class, args);
@@ -27,20 +26,11 @@ public class ProyectoU3KtApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		log.info(">>>Relacionamiento WHERE");
-		List <Factura> listaFacturaWhere=this.iFacturaService.buscarFacturaJoinWhere(10);
-		for(Factura f : listaFacturaWhere) {
-			log.info("		Factura Where: "+f.getNumero()+" "+f.getFecha());
-		}
+		this.iTransfernciaService.realizarTransferenciaFachada("0001", "0002", new BigDecimal(1));
+
 		
-		log.info(">>>JOIN FECHT");
-		List <Factura> listaFacturas3=this.iFacturaService.buscarFacturaJoinFetch(10);
-		for(Factura f : listaFacturas3) {
-			log.info("		Factura3 : "+f.getNumero()+" "+f.getFecha());
-			for(DetalleFactura de: f.getDetalles()) {
-				log.info("		DetallerFacura3: "+de);		
-			}
-		}
+		
+
 
 	}
 
