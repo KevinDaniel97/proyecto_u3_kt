@@ -27,14 +27,18 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 		this.entityManager.merge(cuentaBancaria);
 	}
 	@Override
-	@Transactional(value= TxType.NOT_SUPPORTED)
-
+	//@Transactional(value= TxType.NOT_SUPPORTED)
 	public CuentaBancaria buscarPorNumero(String numeroCta) {
 		// TODO Auto-generated method stub
 		log.info("Transaccion Activa buscarPorNumero: "+ TransactionSynchronizationManager.isActualTransactionActive());
 		TypedQuery<CuentaBancaria> myQuery=this.entityManager.createQuery("SELECT c FROM CuentaBancaria c WHERE c.numero=:numeroCta ",CuentaBancaria.class);
 				myQuery.setParameter("numeroCta", numeroCta);
 			return  myQuery.getSingleResult();		
+	}
+	@Override
+	public void insertar(CuentaBancaria cuentaBancaria) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(cuentaBancaria);
 	}
 	
 
