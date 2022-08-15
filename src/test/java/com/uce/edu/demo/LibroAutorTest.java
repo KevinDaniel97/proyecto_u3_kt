@@ -1,7 +1,6 @@
 package com.uce.edu.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
@@ -20,6 +19,7 @@ import com.uce.edu.demo.libroAutor.repository.modelo.Libro;
 @SpringBootTest
 @AutoConfigureTestDatabase(replace=Replace.NONE)
 @TestMethodOrder(OrderAnnotation.class)
+
 public class LibroAutorTest {
 	private static Logger log = Logger.getLogger(ProyectoU3KtApplication.class);
 
