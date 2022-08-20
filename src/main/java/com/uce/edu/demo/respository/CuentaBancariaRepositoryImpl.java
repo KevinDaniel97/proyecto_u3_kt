@@ -25,9 +25,11 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuentaBancaria);
+		throw new RuntimeException();
+		
 	}
 	@Override
-	//@Transactional(value= TxType.NOT_SUPPORTED)
+	@Transactional(value= TxType.NOT_SUPPORTED)
 	public CuentaBancaria buscarPorNumero(String numeroCta) {
 		// TODO Auto-generated method stub
 		log.info("Transaccion Activa buscarPorNumero: "+ TransactionSynchronizationManager.isActualTransactionActive());
