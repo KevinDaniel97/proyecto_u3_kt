@@ -6,17 +6,14 @@ import com.uce.edu.demo.cajero.repository.modelo.Factura;
 
 public interface IFacturaService {
 
-	public Factura consultar(Integer id);
-	public List<Factura> buscarFacturaInnerJoin(Integer cantidad);
-	public List<Factura> buscarFacturaInnerJoin();
+	 public Factura buscar(Integer id);
 
-	
-	public List<Factura> buscarFacturaOuterJoinLeft(Integer cantidad);
-	public List<Factura> buscarFacturaOuterJoinLeft();
-	
-	public List<Factura> buscarFacturaOuterJoinRight(Integer cantidad);
-	
-	public List<Factura> buscarFacturaJoinWhere(Integer cantidad);
-	public List<Factura> buscarFacturaJoinFetch(Integer cantidad);
+	    public void actualizar(Factura fact);
+
+	    public void eliminar(Integer id);
+
+	    public void insertar(Factura fact);
+
+	    public Factura buscarNumero(String numero);
 
 }

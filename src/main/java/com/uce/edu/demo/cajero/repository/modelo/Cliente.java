@@ -7,67 +7,59 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 @Entity
-@Table(name ="cliente")
+@Table(name = "cliente")
 public class Cliente {
 
-	
-	@Id
-	@Column(name="clie_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clie_id_sec")
-	@SequenceGenerator(name = "clie_id_sec", sequenceName = "clie_id_sec", allocationSize = 1)
-	private Integer id;
-	
-	@Column(name="clie_numero_tarjeta")
-	private String numeroTarjeta;
-	
-	@OneToOne
-	@JoinColumn(name="clie_ciud_id")
-	private Ciudadano ciudadano;
-	
-	@OneToMany(mappedBy="cliente")
-	private List<Factura> facturas;
+    @Id
+    @Column(name = "clie_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clie_id_seq")
+    @SequenceGenerator(name = "clie_id_seq", sequenceName = "clie_id_seq", allocationSize = 1)
+    private Integer id;
 
-	
-	//set y get
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "clie_nombre")
+    private String nombre;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "clie_cedula")
+    private String cedula;
 
-	public String getNumeroTarjeta() {
-		return numeroTarjeta;
-	}
+    @OneToMany(mappedBy = "cliente")
+    private List<Factura> facturas;
 
-	public void setNumeroTarjeta(String numeroTarjeta) {
-		this.numeroTarjeta = numeroTarjeta;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Ciudadano getCiudadano() {
-		return ciudadano;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setCiudadano(Ciudadano ciudadano) {
-		this.ciudadano = ciudadano;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public List<Factura> getFacturas() {
-		return facturas;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setFacturas(List<Factura> facturas) {
-		this.facturas = facturas;
-	}
-	
-	
+    public String getCedula() {
+        return cedula;
+    }
 
-	
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
+    }
+
 }

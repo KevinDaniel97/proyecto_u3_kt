@@ -1,65 +1,49 @@
 package com.uce.edu.demo.cajero.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.edu.demo.cajero.repository.IFacturaRespository;
+import com.uce.edu.demo.cajero.repository.IFacturaRepo;
 import com.uce.edu.demo.cajero.repository.modelo.Factura;
 @Service
 public class FacturaServiceImpl implements IFacturaService {
 
 	
 	@Autowired
-	private IFacturaRespository iFacturaRespository;
+	private IFacturaRepo factRepo ;
 	
 	@Override
-	public Factura consultar(Integer id) { 
+	public Factura buscar(Integer id) {
 		
-		 return this.iFacturaRespository.consultar(id);
+		return this.factRepo.buscar(id);
+	}
+
+	
+
+	@Override
+	public void actualizar(Factura fact) {
+		this.factRepo.actualizar(fact);
+		
 	}
 
 	@Override
-	public List<Factura> buscarFacturaInnerJoin(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaInnerJoin(cantidad);
+	public void eliminar(Integer id) {
+		this.factRepo.eliminar(id);
+		
 	}
 
 	@Override
-	public List<Factura> buscarFacturaInnerJoin() {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaInnerJoin();
+	public void insertar(Factura fact) {
+		this.factRepo.insertar(fact);
+		
 	}
 
-	@Override
-	public List<Factura> buscarFacturaOuterJoinLeft(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaOuterJoinLeft(cantidad);
-	}
+
 
 	@Override
-	public List<Factura> buscarFacturaOuterJoinLeft() {
+	public Factura buscarNumero(String numero) {
 		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaOuterJoinLeft();
-	}
-
-	@Override
-	public List<Factura> buscarFacturaOuterJoinRight(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaOuterJoinRight(cantidad);
-	}
-
-	@Override
-	public List<Factura> buscarFacturaJoinWhere(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaJoinWhere(cantidad);
-	}
-
-	@Override
-	public List<Factura> buscarFacturaJoinFetch(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return this.iFacturaRespository.buscarFacturaJoinFetch(cantidad);
+		return this.factRepo.buscarNumero(numero);
 	}
 
 }
