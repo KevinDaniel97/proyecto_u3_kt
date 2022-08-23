@@ -35,20 +35,18 @@ public class GestorServiceImpl implements IGestorService {
     @Autowired
     private IFacturaElectronicaRepo faElectronicaRepo;
 
-    // A
     @Override
     @Transactional(value = TxType.REQUIRED)
     public void crearDetallesFactura(String cedulaCliente, String numeroFactura, List<String> codigos) {
         Cliente cliente = this.clienteService.buscarCedula(cedulaCliente);
         Factura factura = new Factura();
 
-        // Crear Factura
         factura.setCliente(cliente);
         factura.setNumero(numeroFactura);
         factura.setFecha(LocalDateTime.now());
         this.facturaService.insertar(factura);
 
-        // Crear Detalles
+
        
         BigDecimal monto  = new BigDecimal("0");
         Integer items = 0;
@@ -66,14 +64,8 @@ public class GestorServiceImpl implements IGestorService {
             detalle.setSubtotal(subtotal);
             this.detalleService.insertar(detalle);
 
-            // para ir contando los items que se van agregand al detalle
             items = items + detalle.getCantidad();
-            
-            // para el monto total de la factura
             monto = monto.add(subtotal);
-            
-            
-            // Impl de funcionalidad B 
             actualizarStock(p, detalle.getCantidad());
         }
 
@@ -82,10 +74,7 @@ public class GestorServiceImpl implements IGestorService {
         
         crearFacturaElectronica(numeroFactura, monto, items);
       
-
     }
-
-    // B
     
     @Transactional(value = TxType.REQUIRED)
     public void actualizarStock(Producto p, Integer cantidad) {
@@ -94,10 +83,6 @@ public class GestorServiceImpl implements IGestorService {
         
     }
 
-    // C
-    // Como tabla independiente significa que es una entidad sin un relacionamiento
-    // y no simplemente un DTO
-    // por tanto se inserta como tal
     @Transactional(value = TxType.REQUIRES_NEW)
     public void crearFacturaElectronica(String numeroFact, BigDecimal monto, Integer items ) {
         FacturaElectronica facturaElectronica = new FacturaElectronica();
@@ -105,10 +90,8 @@ public class GestorServiceImpl implements IGestorService {
         facturaElectronica.setMonto(monto);
         facturaElectronica.setNumItems(items);
         facturaElectronica.setNumero(numeroFact);
-        
         this.faElectronicaRepo.insertar(facturaElectronica);
-
-        // throw new RuntimeException();
+        throw new RuntimeException();
         
 
     }
