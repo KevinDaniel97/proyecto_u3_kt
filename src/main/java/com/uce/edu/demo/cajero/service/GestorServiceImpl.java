@@ -40,20 +40,13 @@ public class GestorServiceImpl implements IGestorService {
     public void crearDetallesFactura(String cedulaCliente, String numeroFactura, List<String> codigos) {
         Cliente cliente = this.clienteService.buscarCedula(cedulaCliente);
         Factura factura = new Factura();
-
         factura.setCliente(cliente);
         factura.setNumero(numeroFactura);
         factura.setFecha(LocalDateTime.now());
         this.facturaService.insertar(factura);
-
-
-       
         BigDecimal monto  = new BigDecimal("0");
         Integer items = 0;
-        
-       
 
-        
         for (String cod : codigos) {
             Detalle detalle = new Detalle();
             detalle.setCantidad(1);
@@ -68,19 +61,16 @@ public class GestorServiceImpl implements IGestorService {
             monto = monto.add(subtotal);
             actualizarStock(p, detalle.getCantidad());
         }
-
         factura.setMonto(monto);
         this.facturaService.actualizar(factura);
         
-        crearFacturaElectronica(numeroFactura, monto, items);
-      
+        crearFacturaElectronica(numeroFactura, monto, items);   
     }
     
     @Transactional(value = TxType.REQUIRED)
     public void actualizarStock(Producto p, Integer cantidad) {
         p.setStock(p.getStock() - cantidad);
         this.productoService.actualizar(p);
-        
     }
 
     @Transactional(value = TxType.REQUIRES_NEW)
@@ -92,7 +82,6 @@ public class GestorServiceImpl implements IGestorService {
         facturaElectronica.setNumero(numeroFact);
         this.faElectronicaRepo.insertar(facturaElectronica);
         throw new RuntimeException();
-        
 
     }
 
