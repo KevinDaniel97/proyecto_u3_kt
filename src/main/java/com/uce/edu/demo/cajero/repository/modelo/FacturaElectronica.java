@@ -16,61 +16,65 @@ import javax.persistence.Table;
 public class FacturaElectronica {
     
     @Id
-    @Column(name = "fatr_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fatr_id_seq")
-    @SequenceGenerator(name = "fatr_id_seq", sequenceName = "fatr_id_seq", allocationSize = 1)
+    @Column(name = "fael_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fael_id_seq")
+    @SequenceGenerator(name = "fael_id_seq", sequenceName = "fael_id_seq", allocationSize = 1)
     private Integer id;
 
-    @Column(name = "fatr_numero")
+    @Column(name = "fael_numero")
     private String numero;
 
-    @Column(name = "fatr_fecha")
-    private LocalDateTime fechaCreacion;
+    @Column(name = "fael_fecha")
+    private LocalDateTime fecha;
 
-    @Column(name = "fatr_monto")
+    @Column(name = "fael_monto")
     private BigDecimal monto;
 
-    @Column(name = "fatr_num_items")
+    @Column(name = "fael_num_items")
     private Integer numItems;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
+
+	public BigDecimal getMonto() {
+		return monto;
+	}
+
+	public void setMonto(BigDecimal monto) {
+		this.monto = monto;
+	}
+
+	public Integer getNumItems() {
+		return numItems;
+	}
+
+	public void setNumItems(Integer numItems) {
+		this.numItems = numItems;
+	}
 
 
-    // Get y Set
-  
-    public String getNumero() {
-        return numero;
-    }
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-    public BigDecimal getMonto() {
-        return monto;
-    }
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
-    }
-    public Integer getNumItems() {
-        return numItems;
-    }
-    public void setNumItems(Integer numItems) {
-        this.numItems = numItems;
-    }
 
-    public Integer getId() {
-        return id;
-    }
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
+ 
 	
 }

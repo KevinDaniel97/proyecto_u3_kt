@@ -12,46 +12,22 @@ import com.uce.edu.demo.cajero.repository.modelo.Producto;
 @Repository
 @Transactional
 public class ProductoRepoImpl implements IProductoRepo{
-	
-	
-	
+
 	@PersistenceContext
-	private EntityManager e;
+	private EntityManager entityManager;
 	
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
-	public Producto buscar(Integer id) {
-		return this.e.find(Producto.class, id);
+	public Producto buscar(String codigo) {
+		TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.codigoBarras = :codigoBarra", Producto.class);
+		myQuery.setParameter("codigoBarra", codigo);
+		return myQuery.getSingleResult();
+	}
+	@Override
+	@Transactional(value = TxType.MANDATORY)
+	public void actualizar(Producto producto) {
+		this.entityManager.merge(producto);
 	}
 
 	
-	@Override
-	public void actualizar(Producto prod) {
-		this.e.merge(prod);
-		
-	}
-
-	@Override
-	public void eliminar(Integer id) {
-		Producto gBorrar = this.buscar(id);
-		this.e.remove(gBorrar);
-		
-	}
-
-	@Override
-	public void insertar(Producto prod) {
-		this.e.persist(prod);
-		
-	}
-
-
-	@Override
-	public Producto buscarCodigoBarras(String codigoBarras) {
-		TypedQuery<Producto> myTypedQuery = this.e
-				.createQuery("SELECT p FROM Producto p  WHERE p.codigoBarras = :numero  ", Producto.class)
-				.setParameter("numero", codigoBarras);
-		return myTypedQuery.getSingleResult();
-		
-	}
-
 }

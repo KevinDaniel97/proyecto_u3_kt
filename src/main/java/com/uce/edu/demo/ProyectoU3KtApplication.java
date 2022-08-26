@@ -1,5 +1,8 @@
 package com.uce.edu.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,8 +19,8 @@ public class ProyectoU3KtApplication implements CommandLineRunner {
 private static Logger log = Logger.getLogger(ProyectoU3KtApplication.class);
 
 	
-@Autowired
-private IGestorService gestorService;
+	@Autowired
+	private IGestorService gestorService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3KtApplication.class, args);
@@ -26,8 +29,13 @@ private IGestorService gestorService;
 	@Override
 	public void run(String... args) throws Exception {
 		
-
-
+		List<String> codigosLista = new ArrayList<>();
+		codigosLista.add("001");
+		codigosLista.add("002");
+		//codigosLista.add("003");
+		this.gestorService.compraProductos("1725845869", "002", codigosLista);
+		
+		//log.info(codigosLista);
 	}
 
 }

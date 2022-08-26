@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +28,7 @@ public class Factura {
     private Integer id;
 
     @Column(name = "fact_numero")
-    private String numero;
+    private String numeroFactura;
 
     @Column(name = "fact_fecha")
     private LocalDateTime fecha;
@@ -34,63 +36,62 @@ public class Factura {
     @Column(name = "fact_monto")
     private BigDecimal monto;
 
-    @OneToMany(mappedBy = "factura")
-    private List<Detalle> detalles;
+    @OneToMany(mappedBy = "factura",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<DetalleFactura> detalles;
 
     @ManyToOne
     @JoinColumn(name = "fact_clie_id")
     private Cliente cliente;
-
     // Get y Set
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getNumero() {
-        return numero;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+	public String getNumeroFactura() {
+		return numeroFactura;
+	}
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
+	public void setNumeroFactura(String numeroFactura) {
+		this.numeroFactura = numeroFactura;
+	}
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
+	public LocalDateTime getFecha() {
+		return fecha;
+	}
 
-    public List<Detalle> getDetalles() {
-        return detalles;
-    }
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
 
-    public void setDetalles(List<Detalle> detalles) {
-        this.detalles = detalles;
-    }
+	public BigDecimal getMonto() {
+		return monto;
+	}
 
-   
-    public Cliente getCliente() {
-        return cliente;
-    }
+	public void setMonto(BigDecimal monto) {
+		this.monto = monto;
+	}
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+	public List<DetalleFactura> getDetalles() {
+		return detalles;
+	}
 
-    public BigDecimal getMonto() {
-        return monto;
-    }
+	public void setDetalles(List<DetalleFactura> detalles) {
+		this.detalles = detalles;
+	}
 
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
-    }
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-    
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
 	
 }

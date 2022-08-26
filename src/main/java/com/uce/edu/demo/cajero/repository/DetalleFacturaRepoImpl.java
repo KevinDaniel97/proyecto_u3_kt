@@ -7,20 +7,20 @@ import javax.transaction.Transactional.TxType;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.cajero.repository.modelo.FacturaElectronica;
+import com.uce.edu.demo.cajero.repository.modelo.DetalleFactura;
+
 @Repository
 @Transactional
-public class FacturaElectronicaRepoImpl implements IFacturaElectronicaRepo{
+public class DetalleFacturaRepoImpl implements IDetalleFacturaRepo{
 	
-	
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-
+	
 	@Override
 	@Transactional(value = TxType.MANDATORY)
-	public void insertar(FacturaElectronica facturaElectronica) {
-		this.entityManager.persist(facturaElectronica);
+	public void insertar(DetalleFactura detalleFactura) {
+		this.entityManager.persist(detalleFactura);
 		
 	}
 }

@@ -2,8 +2,10 @@ package com.uce.edu.demo.cajero.repository.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,45 +23,36 @@ public class Cliente {
     @SequenceGenerator(name = "clie_id_seq", sequenceName = "clie_id_seq", allocationSize = 1)
     private Integer id;
 
-    @Column(name = "clie_nombre")
-    private String nombre;
 
     @Column(name = "clie_cedula")
     private String cedula;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente",cascade= CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Factura> facturas;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getCedula() {
+		return cedula;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 
-    public String getCedula() {
-        return cedula;
-    }
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
 
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
-    }
-
+ 
 }
