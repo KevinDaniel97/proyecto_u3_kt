@@ -28,14 +28,7 @@ private static Logger log = Logger.getLogger(ProyectoU3KtApplication.class);
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		List<String> codigosLista = new ArrayList<>();
-		codigosLista.add("001");
-		codigosLista.add("002");
-		//codigosLista.add("003");
-		this.gestorService.compraProductos("1725845869", "002", codigosLista);
-		
-		//log.info(codigosLista);
+	
 	}
 
 }
