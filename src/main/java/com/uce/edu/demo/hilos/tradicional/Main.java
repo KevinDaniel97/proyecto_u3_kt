@@ -7,21 +7,28 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Proceso con 2 segundos");
+		System.out.println("Proceso con 5 segundos");
 		long tiempoInicial=System.currentTimeMillis();
-		Cajero c1=new Cajero("Kevin",Arrays.asList("pepito", "juan", "Daniel","pedro"));
-		Cajero c2=new Cajero("luis",Arrays.asList("pepito2", "juan2", "Daniel2"));
+		
+		System.out.println("nombre hilo: "+Thread.currentThread().getName());
+		
+		Cajero c1=new Cajero("Kevin",Arrays.asList("pepito", "juan"));
+		Cajero c2=new Cajero("luis",Arrays.asList("pepito2", "juan2"));
 		Cajero c3=new Cajero("paul",Arrays.asList("pepito3", "juan3"));
 
 		PCCajero gestorAtencion=new PCCajero();
 		gestorAtencion.procesar(c1);
-		gestorAtencion.procesar(c2);
-		gestorAtencion.procesar(c3);
+		
+		PCCajero gestorAtencion2=new PCCajero();
+		gestorAtencion2.procesar(c2);
+		
+		PCCajero gestorAtencion3=new PCCajero();
+		gestorAtencion3.procesar(c3);
 
 		
 		long tiempoFinal=System.currentTimeMillis();
 		long tiempoTranscurrido=(tiempoFinal-tiempoInicial)/1000;
-		System.out.println(tiempoTranscurrido+" seg");
+		System.out.println("Tiempo transcurrido: "+tiempoTranscurrido+" seg");
 	}
 
 }
