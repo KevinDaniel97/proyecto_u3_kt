@@ -7,10 +7,9 @@ public class MainParalelo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("*************Proceso con 5 segundos***************");
+		System.out.println("*************Proceso con 5 segundos***************\n");
 		
 		System.out.println("Nombre hilo: "+Thread.currentThread().getName());
-		
 		CajeroParalelo c1=new CajeroParalelo("Kevin",Arrays.asList("pepito"));
 		CajeroParalelo c2=new CajeroParalelo("luis",Arrays.asList("pepito2"));
 		CajeroParalelo c3=new CajeroParalelo("paul",Arrays.asList("pepito3"));
